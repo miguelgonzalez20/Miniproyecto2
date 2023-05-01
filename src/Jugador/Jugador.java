@@ -27,6 +27,10 @@ public class Jugador {
     public Jugador(String nombre){
         this.nombre1 = nombre;
     }
+    
+    //public Jugador2(String nombre){
+        //this.nombre2= nombre;
+    //}
 
     public String getNombre1() {
         return nombre1;
