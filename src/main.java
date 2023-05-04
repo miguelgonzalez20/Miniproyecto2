@@ -12,7 +12,7 @@ import GUI.VentanaPrincipal;
  * @author Miguel
  */
 public class main {
-
+    public static String nombre_1;
     /**
      * @param args the command line arguments
      */

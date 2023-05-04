@@ -13,8 +13,8 @@ public class Jugador {
     
     //ATRIBUTOS
     
-    public String nombre1;
-    public String nombre2;
+    public static String nombre1;
+    public static String nombre2;
     public static int numeroPartidas;
     
     // METODO CONSTRUCTOR
@@ -33,7 +33,7 @@ public class Jugador {
         this.nombre2 = nombre2;
     }
     
-
+    
     public String getNombre1() {
         return nombre1;
     }
