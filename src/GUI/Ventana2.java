@@ -55,9 +55,8 @@ public class Ventana2 extends javax.swing.JFrame {
         ImagenArriba.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(ImagenArriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 170, 40));
 
-        dosjugadores.setBackground(new java.awt.Color(0, 0, 0));
-        dosjugadores.setForeground(new java.awt.Color(153, 255, 0));
         dosjugadores.setText("TWO PLAYER");
+        dosjugadores.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         dosjugadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dosjugadoresActionPerformed(evt);
@@ -65,19 +64,15 @@ public class Ventana2 extends javax.swing.JFrame {
         });
         jPanel1.add(dosjugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 110, 30));
 
-        unjugador.setBackground(new java.awt.Color(0, 0, 0));
-        unjugador.setForeground(new java.awt.Color(102, 255, 0));
         unjugador.setText("SINGLE PLAYER");
-        unjugador.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        unjugador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         unjugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unjugadorActionPerformed(evt);
             }
         });
-        jPanel1.add(unjugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 100, 30));
+        jPanel1.add(unjugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 110, 30));
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setForeground(new java.awt.Color(102, 255, 0));
         jButton3.setText("1");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,25 +81,19 @@ public class Ventana2 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setForeground(new java.awt.Color(102, 255, 0));
         jButton5.setText("4");
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setForeground(new java.awt.Color(102, 255, 0));
         jButton4.setText("2");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jButton6.setForeground(new java.awt.Color(102, 255, 0));
         jButton6.setText("3");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Papyrus", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 255, 0));
         jLabel2.setText("Numero de partidas");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 240, 40));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 240, 40));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo Madera.jpg"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 520, 370));
@@ -125,18 +114,19 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void dosjugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosjugadoresActionPerformed
       
-        Nombre2 newframe4= new Nombre2();
-        newframe4.setVisible(true);
+        Nombre2 ventanaNombre2= new Nombre2();
+        ventanaNombre2.setVisible(true);
+        ventanaNombre2.setLocationRelativeTo(null);
         
-        this.dispose();//para que no se acumulen las ventanas         // TODO add your handling code here:
+        this.dispose();//para que no se acumulen las ventanas        
     }//GEN-LAST:event_dosjugadoresActionPerformed
 
     private void unjugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unjugadorActionPerformed
            // TODO add your handling code here:
           
-        Nombres newframe3= new Nombres();
-        newframe3.setVisible(true);
-        
+        Nombres ventanaNombre1 = new Nombres();
+        ventanaNombre1.setVisible(true);
+        ventanaNombre1.setLocationRelativeTo(null);
         this.dispose();//para que no se acumulen las ventanas 
    
         
