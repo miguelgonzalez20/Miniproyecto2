@@ -31,6 +31,7 @@ public class Nombres extends javax.swing.JFrame {
         next = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 102, 102));
 
         nombreuno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,6 +41,7 @@ public class Nombres extends javax.swing.JFrame {
 
         nombreunjugador.setText("WRITE NAME ");
 
+        next.setBackground(new java.awt.Color(255, 0, 204));
         next.setText("NEXT");
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
