@@ -15,22 +15,24 @@ public class Jugador {
     
     public String nombre1;
     public String nombre2;
-    public static int categoriaSeleccionada;
+    public static int numeroPartidas;
     
     // METODO CONSTRUCTOR
     public Jugador(){
         nombre1 = "NONE";
         nombre2 = "NONE";
-        categoriaSeleccionada = 0;
+        numeroPartidas = 0;
     }
     
     public Jugador(String nombre){
         this.nombre1 = nombre;
     }
     
-    //public Jugador2(String nombre){
-        //this.nombre2= nombre;
-    //}
+    public Jugador(String nombre1, String nombre2){
+        this.nombre1 = nombre1;
+        this.nombre2 = nombre2;
+    }
+    
 
     public String getNombre1() {
         return nombre1;
@@ -40,12 +42,20 @@ public class Jugador {
         this.nombre1 = nombre;
     }
     
-    public static int get_categoriaSeleccionada() {
-        return categoriaSeleccionada;
+    public String getNombre2() {
+        return nombre2;
     }
     
-    public void set_categoriaSeleccionada(int categoriaSeleccionada) {
-        this.categoriaSeleccionada = categoriaSeleccionada;
+    public void setNombre2(String nombre2) {
+        this.nombre2 = nombre2;
+    }
+    
+    public static int get_numeroPartidas() {
+        return numeroPartidas;
+    }
+    
+    public void set_numeroPartidas(int numeroPartidas) {
+        this.numeroPartidas = numeroPartidas;
     }
     
 }
