@@ -114,7 +114,7 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void dosjugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosjugadoresActionPerformed
       
-        Nombre2 ventanaNombre2= new Nombre2();
+        VentanaDosJugadores ventanaNombre2= new VentanaDosJugadores();
         ventanaNombre2.setVisible(true);
         ventanaNombre2.setLocationRelativeTo(null);
         
@@ -124,7 +124,7 @@ public class Ventana2 extends javax.swing.JFrame {
     private void unjugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unjugadorActionPerformed
            // TODO add your handling code here:
           
-        Nombres ventanaNombre1 = new Nombres();
+        VentanaUnJugador ventanaNombre1 = new VentanaUnJugador();
         ventanaNombre1.setVisible(true);
         ventanaNombre1.setLocationRelativeTo(null);
         this.dispose();//para que no se acumulen las ventanas 
