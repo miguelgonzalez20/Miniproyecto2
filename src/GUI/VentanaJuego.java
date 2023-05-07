@@ -47,9 +47,11 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
 
     public void presionar(int posicion){
+        
          
         if (lbs[ posicion - 1 ].getText() == ""){
             lbs[ posicion - 1 ].setText(turno);
+            comprobarGanador();
             cambiarTurno();    
         }
         
@@ -211,11 +213,9 @@ public class VentanaJuego extends javax.swing.JFrame {
         jPanel1.add(labelWinsPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, 40));
 
         labelCPU.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        labelCPU.setText("CPU");
         jPanel1.add(labelCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
         labelPlayerName.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        labelPlayerName.setText("Player");
         jPanel1.add(labelPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo Madera.jpg"))); // NOI18N
@@ -238,6 +238,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void botonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonStartGameActionPerformed
         
         labelPlayerName.setText(jugador.nombre1);
+        labelCPU.setText(jugador.nombre2);
     }//GEN-LAST:event_botonStartGameActionPerformed
 
     private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed

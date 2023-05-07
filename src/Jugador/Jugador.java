@@ -20,7 +20,7 @@ public class Jugador {
     // METODO CONSTRUCTOR
     public Jugador(){
         nombre1 = "NONE";
-        nombre2 = "NONE";
+        nombre2 = "CPU";
         numeroPartidas = 0;
     }
     
