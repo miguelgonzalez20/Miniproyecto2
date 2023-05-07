@@ -16,12 +16,18 @@ public class Jugador {
     public static String nombre1;
     public static String nombre2;
     public static int numeroPartidas;
+    public static boolean machine;
+    public static int WinsPlayer1;
+    public static int WinsPlayer2;
     
     // METODO CONSTRUCTOR
     public Jugador(){
         nombre1 = "NONE";
         nombre2 = "CPU";
         numeroPartidas = 0;
+        WinsPlayer1 = 0;
+        WinsPlayer2 = 0;
+        machine = false;
     }
     
     public Jugador(String nombre){

@@ -4,10 +4,19 @@ package GUI;
 import Jugador.Jugador;
 import java.awt.Color;
 import javax.swing.JLabel;
+import java.util.Random;
 
 
 public class VentanaJuego extends javax.swing.JFrame {
+    // ATRIBUTOS
+    boolean maquina = false;
     
+    boolean estado = true; 
+    String nextGame = "O";
+    int contadorPartidas = 0;
+    
+    int victoriasJugador1 = 0;
+    int victoriasJugador2 = 0;
     String turno = "X";
     JLabel lbs[] = new JLabel[9];       
     Jugador jugador;
@@ -28,6 +37,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     
     public VentanaJuego(Jugador jugador) {
         this.jugador = jugador;
+        
         initComponents();
         
         lbs[0] = jLabel1;
@@ -48,11 +58,31 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     public void presionar(int posicion){
         
+
+        int contador = 0;
+       
          
-        if (lbs[ posicion - 1 ].getText() == ""){
+        if (lbs[ posicion - 1 ].getText().equals("") && estado == true){
             lbs[ posicion - 1 ].setText(turno);
             comprobarGanador();
-            cambiarTurno();    
+            cambiarTurno();
+            if(maquina == true){
+                Random rand = new Random();
+                
+                while(contador == 0){
+                    int numeroAleatorio = rand.nextInt(9);
+                    if (lbs[ numeroAleatorio ].getText().equals("") && estado == true){
+                        lbs[numeroAleatorio].setText(turno);
+                        comprobarGanador();
+                        cambiarTurno();
+                        contador = 1;
+                    }
+                    
+                
+                }
+                    
+            }
+               
         }
         
     }
@@ -64,7 +94,9 @@ public class VentanaJuego extends javax.swing.JFrame {
             turno = "X";
         }
     }
-    
+    public void revisarTablero(){
+        
+    }
     public void comprobarGanador(){
         
         for ( int i = 0; i < combinacionesGanador.length; i++){
@@ -72,17 +104,27 @@ public class VentanaJuego extends javax.swing.JFrame {
                     lbs[combinacionesGanador[i][1] - 1 ].getText().equals("X")&&
                     lbs[combinacionesGanador[i][2] - 1 ].getText().equals("X")){
                 
+                victoriasJugador1++; // SI GANA X LE SUMA 1 A victoriasJugador1
+                
                 lbs[combinacionesGanador[i][0] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][1] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][2] - 1 ].setForeground(Color.green);
+                
+                estado = false;
             }
             if( lbs[combinacionesGanador[i][0] - 1 ].getText().equals("O") && 
                     lbs[combinacionesGanador[i][1] - 1 ].getText().equals("O") &&
                     lbs[combinacionesGanador[i][2] - 1 ].getText().equals("O") ){
+                
+                    victoriasJugador2++; // SI GANA O LE SUMA 1 A victoriasJugador2
+                    
                 lbs[combinacionesGanador[i][0] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][1] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][2] - 1 ].setForeground(Color.green);
-            }   
+                
+                estado = false;
+            }
+            
         }
             
     }
@@ -93,6 +135,10 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         botonStartGame = new javax.swing.JButton();
+        nextGameButton = new javax.swing.JButton();
+        labelWinsPlayer = new javax.swing.JLabel();
+        labelWinsPlayer2 = new javax.swing.JLabel();
+        Rondas = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -103,8 +149,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         labelTablero = new javax.swing.JLabel();
-        labelWinsCPU = new javax.swing.JLabel();
-        labelWinsPlayer = new javax.swing.JLabel();
         labelCPU = new javax.swing.JLabel();
         labelPlayerName = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
@@ -120,6 +164,29 @@ public class VentanaJuego extends javax.swing.JFrame {
             }
         });
         jPanel1.add(botonStartGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 160, -1));
+
+        nextGameButton.setText("NEXT GAME");
+        nextGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextGameButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(nextGameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, -1, -1));
+
+        labelWinsPlayer.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        labelWinsPlayer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelWinsPlayer.setText("0");
+        labelWinsPlayer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.add(labelWinsPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, 40));
+
+        labelWinsPlayer2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        labelWinsPlayer2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelWinsPlayer2.setText("0");
+        labelWinsPlayer2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.add(labelWinsPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 70, 40));
+
+        Rondas.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jPanel1.add(Rondas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
@@ -206,12 +273,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         labelTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoJuego.png"))); // NOI18N
         jPanel1.add(labelTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 280, 200));
 
-        labelWinsCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel1.add(labelWinsCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 70, 40));
-
-        labelWinsPlayer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel1.add(labelWinsPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, 40));
-
         labelCPU.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jPanel1.add(labelCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
@@ -236,9 +297,12 @@ public class VentanaJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonStartGameActionPerformed
-        
+        if(jugador.machine == true){
+            maquina = true;
+        }
         labelPlayerName.setText(jugador.nombre1);
         labelCPU.setText(jugador.nombre2);
+        Rondas.setText("RONDA # " + Integer.toString(contadorPartidas+1));
     }//GEN-LAST:event_botonStartGameActionPerformed
 
     private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
@@ -277,6 +341,45 @@ public class VentanaJuego extends javax.swing.JFrame {
         presionar(9);
     }//GEN-LAST:event_jLabel9MousePressed
 
+   
+    private void nextGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGameButtonActionPerformed
+        if(victoriasJugador1 == 0 && victoriasJugador2 == 0){
+            contadorPartidas--;
+        } // CONDICIONAL PARA CUANDO NADIE GANA CUANDO ES SOLO UNA PARTIDA
+        estado = true;  
+        turno = nextGame;
+        if (nextGame.equals("O")){
+            nextGame = "X";
+        }
+        else{
+            nextGame = "O";
+        }
+        contadorPartidas++;
+        Rondas.setText("RONDA # " + Integer.toString(contadorPartidas+1));
+  
+        System.out.println("VICTORIAS JUGADOR 1 = "+jugador.WinsPlayer1);
+        System.out.println("VICTORIAS JUGADOR 2 = "+jugador.WinsPlayer2);
+        jugador.WinsPlayer1 = victoriasJugador1;
+        jugador.WinsPlayer2 = victoriasJugador2;
+        System.out.println("VICTORIAS JUGADOR 1 = "+jugador.WinsPlayer1);
+        System.out.println("VICTORIAS JUGADOR 2 = "+jugador.WinsPlayer2);
+        labelWinsPlayer.setText(Integer.toString(jugador.WinsPlayer1));
+        labelWinsPlayer2.setText(Integer.toString(jugador.WinsPlayer2));
+        if (contadorPartidas < jugador.numeroPartidas){
+            for( int i = 0; i < lbs.length; i ++){
+                lbs[i].setText("");
+                lbs[i].setForeground(Color.black);
+            }
+        }
+        else{
+            VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas(jugador);
+            ventanaEstadisticas.setVisible(true);
+            ventanaEstadisticas.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
+            
+    }//GEN-LAST:event_nextGameButtonActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -284,6 +387,7 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;
+    private javax.swing.JLabel Rondas;
     private javax.swing.JButton botonStartGame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -298,7 +402,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel labelCPU;
     private javax.swing.JLabel labelPlayerName;
     private javax.swing.JLabel labelTablero;
-    private javax.swing.JLabel labelWinsCPU;
     private javax.swing.JLabel labelWinsPlayer;
+    private javax.swing.JLabel labelWinsPlayer2;
+    private javax.swing.JButton nextGameButton;
     // End of variables declaration//GEN-END:variables
 }

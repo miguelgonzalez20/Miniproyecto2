@@ -5,18 +5,20 @@
  */
 package GUI;
 
+import Jugador.Jugador;
+
 /**
  *
  * @author Miguel
  */
 public class Ventana2 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ventana2
-     */
+    int cantidadPartidas1 = 0;
     public Ventana2() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,10 +34,10 @@ public class Ventana2 extends javax.swing.JFrame {
         ImagenArriba = new javax.swing.JLabel();
         dosjugadores = new javax.swing.JButton();
         unjugador = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        UnaPartida = new javax.swing.JButton();
+        CuatroPartidas = new javax.swing.JButton();
+        DosPartidas = new javax.swing.JButton();
+        TresPartidas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
@@ -62,7 +64,7 @@ public class Ventana2 extends javax.swing.JFrame {
                 dosjugadoresActionPerformed(evt);
             }
         });
-        jPanel1.add(dosjugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 110, 30));
+        jPanel1.add(dosjugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 110, 30));
 
         unjugador.setText("SINGLE PLAYER");
         unjugador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -71,29 +73,48 @@ public class Ventana2 extends javax.swing.JFrame {
                 unjugadorActionPerformed(evt);
             }
         });
-        jPanel1.add(unjugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 110, 30));
+        jPanel1.add(unjugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 110, 30));
 
-        jButton3.setText("1");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        UnaPartida.setText("1");
+        UnaPartida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        UnaPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                UnaPartidaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
+        jPanel1.add(UnaPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 40, 30));
 
-        jButton5.setText("4");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
+        CuatroPartidas.setText("4");
+        CuatroPartidas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        CuatroPartidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CuatroPartidasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CuatroPartidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 40, 30));
 
-        jButton4.setText("2");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+        DosPartidas.setText("2");
+        DosPartidas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DosPartidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DosPartidasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(DosPartidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 40, 30));
 
-        jButton6.setText("3");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
+        TresPartidas.setText("3");
+        TresPartidas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        TresPartidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TresPartidasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(TresPartidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 40, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 255, 0));
         jLabel2.setText("Numero de partidas");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 240, 40));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 240, 40));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo Madera.jpg"))); // NOI18N
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 520, 370));
@@ -113,8 +134,10 @@ public class Ventana2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dosjugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosjugadoresActionPerformed
-      
-        VentanaDosJugadores ventanaNombre2= new VentanaDosJugadores();
+        Jugador jugador = new Jugador();
+        jugador.numeroPartidas = cantidadPartidas1;
+    
+        VentanaDosJugadores ventanaNombre2= new VentanaDosJugadores(jugador);
         ventanaNombre2.setVisible(true);
         ventanaNombre2.setLocationRelativeTo(null);
         
@@ -123,8 +146,11 @@ public class Ventana2 extends javax.swing.JFrame {
 
     private void unjugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unjugadorActionPerformed
            // TODO add your handling code here:
-          
-        VentanaUnJugador ventanaNombre1 = new VentanaUnJugador();
+        Jugador jugador = new Jugador();
+        jugador.numeroPartidas = cantidadPartidas1;
+        jugador.machine = true;
+        VentanaUnJugador ventanaNombre1 = new VentanaUnJugador(jugador);
+        
         ventanaNombre1.setVisible(true);
         ventanaNombre1.setLocationRelativeTo(null);
         this.dispose();//para que no se acumulen las ventanas 
@@ -133,9 +159,10 @@ public class Ventana2 extends javax.swing.JFrame {
          
     }//GEN-LAST:event_unjugadorActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void UnaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnaPartidaActionPerformed
+        
+        cantidadPartidas1 = 1;
+    }//GEN-LAST:event_UnaPartidaActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
@@ -144,15 +171,28 @@ public class Ventana2 extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    private void DosPartidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DosPartidasActionPerformed
+        cantidadPartidas1 = 2;
+    }//GEN-LAST:event_DosPartidasActionPerformed
+
+    private void TresPartidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TresPartidasActionPerformed
+
+        cantidadPartidas1 = 3;
+    }//GEN-LAST:event_TresPartidasActionPerformed
+
+    private void CuatroPartidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuatroPartidasActionPerformed
+        cantidadPartidas1 = 4;
+    }//GEN-LAST:event_CuatroPartidasActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CuatroPartidas;
+    private javax.swing.JButton DosPartidas;
     private javax.swing.JLabel Fondo;
     private javax.swing.JLabel ImagenArriba;
+    private javax.swing.JButton TresPartidas;
+    private javax.swing.JButton UnaPartida;
     private javax.swing.JButton botonVolver;
     private javax.swing.JButton dosjugadores;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton unjugador;

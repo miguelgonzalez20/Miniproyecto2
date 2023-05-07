@@ -4,15 +4,21 @@
  */
 package GUI;
 
+import Jugador.Jugador;
+
 /**
  *
  * @author Usuario
  */
 public class VentanaDosJugadores extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Nombre2
-     */
+    Jugador jugador;
+    
+    public VentanaDosJugadores(Jugador jugador) {
+        this.jugador = jugador;
+        initComponents();
+    }
+    
     public VentanaDosJugadores() {
         initComponents();
     }
@@ -29,8 +35,8 @@ public class VentanaDosJugadores extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         botonPlay = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        textNombreDos = new javax.swing.JTextField();
+        textNombreUno = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,8 +56,8 @@ public class VentanaDosJugadores extends javax.swing.JFrame {
             }
         });
         jPanel1.add(botonPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 80, 50));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 280, 30));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 280, 30));
+        jPanel1.add(textNombreDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 280, 30));
+        jPanel1.add(textNombreUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 280, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel4.setText("PLAYER 2 :");
@@ -83,7 +89,13 @@ public class VentanaDosJugadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPlayActionPerformed
-        VentanaJuego ventanaJuego = new VentanaJuego();
+        //Jugador jugador = new Jugador();
+        String nombreDigitado1 = textNombreUno.getText();
+        String nombreDigitado2 = textNombreDos.getText();
+        jugador.nombre1 = nombreDigitado1;
+        jugador.nombre2 = nombreDigitado2;
+        
+        VentanaJuego ventanaJuego = new VentanaJuego(jugador);
         ventanaJuego.setVisible(true);
         ventanaJuego.setLocationRelativeTo(null);
         this.setVisible(false);
@@ -101,7 +113,7 @@ public class VentanaDosJugadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField textNombreDos;
+    private javax.swing.JTextField textNombreUno;
     // End of variables declaration//GEN-END:variables
 }

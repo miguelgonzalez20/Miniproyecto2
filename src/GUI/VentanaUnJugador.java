@@ -9,10 +9,19 @@ import Jugador.Jugador;
  * @author Usuario
  */
 public class VentanaUnJugador extends javax.swing.JFrame {
-
+    
+    Jugador jugador;
+    
+    public VentanaUnJugador(Jugador jugador) {
+        this.jugador = jugador;
+        initComponents();
+    }
+    
     public VentanaUnJugador() {
         initComponents();
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -48,7 +57,7 @@ public class VentanaUnJugador extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setText("PLAYER 1 :");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel2.setText("WRITE YOU NAME:");
@@ -72,13 +81,11 @@ public class VentanaUnJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPlayActionPerformed
-        Jugador jugador = new Jugador();
+        //Jugador jugadosr = new Jugador();
         String nombreDigitado1 = nombreDigitado.getText();
         jugador.nombre1 = nombreDigitado1;
         System.out.println("NOMBRE EN ATRIBUTO = " + jugador.nombre1);
-        
-        
-        
+
         VentanaJuego ventanaJuego = new VentanaJuego(jugador);
         ventanaJuego.setVisible(true);
         ventanaJuego.setLocationRelativeTo(null);
