@@ -3,12 +3,20 @@ package GUI;
 
 import Jugador.Jugador;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JLabel;
 import java.util.Random;
 
 
-public class VentanaJuego extends javax.swing.JFrame {
+public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
     // ATRIBUTOS
+    int x,y;
+  
+    public int posicion;
+   
+   
+        
     boolean maquina = false;
     
     boolean estado = true; 
@@ -53,7 +61,9 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
     
     public VentanaJuego() {
+        
         initComponents();
+        jLabel10.setFocusable(true);
     }
 
     public void presionar(int posicion){
@@ -141,16 +151,17 @@ public class VentanaJuego extends javax.swing.JFrame {
         Rondas = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         labelTablero = new javax.swing.JLabel();
         labelCPU = new javax.swing.JLabel();
         labelPlayerName = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -196,6 +207,11 @@ public class VentanaJuego extends javax.swing.JFrame {
                 jLabel1MousePressed(evt);
             }
         });
+        jLabel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel1KeyPressed(evt);
+            }
+        });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 60, 50));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
@@ -205,16 +221,12 @@ public class VentanaJuego extends javax.swing.JFrame {
                 jLabel2MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 60, 50));
-
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel3MousePressed(evt);
+        jLabel2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel2KeyPressed(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 60, 50));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 60, 50));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -270,6 +282,17 @@ public class VentanaJuego extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 60, 50));
 
+        jLabel10.setBackground(new java.awt.Color(255, 51, 51));
+        jLabel10.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel10.setText("jLabel10");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 204)));
+        jLabel10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel10KeyPressed(evt);
+            }
+        });
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 80, 60));
+
         labelTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoJuego.png"))); // NOI18N
         jPanel1.add(labelTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 280, 200));
 
@@ -279,7 +302,17 @@ public class VentanaJuego extends javax.swing.JFrame {
         labelPlayerName.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jPanel1.add(labelPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 70, 60));
+
+        Fondo.setBackground(new java.awt.Color(255, 0, 0));
+        Fondo.setForeground(new java.awt.Color(255, 51, 0));
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo Madera.jpg"))); // NOI18N
+        Fondo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FondoKeyPressed(evt);
+            }
+        });
         jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 370));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -304,10 +337,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         labelCPU.setText(jugador.nombre2);
         Rondas.setText("RONDA # " + Integer.toString(contadorPartidas+1));
     }//GEN-LAST:event_botonStartGameActionPerformed
-
-    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
-        presionar(3);
-    }//GEN-LAST:event_jLabel3MousePressed
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
         presionar(1);
@@ -380,6 +409,58 @@ public class VentanaJuego extends javax.swing.JFrame {
             
     }//GEN-LAST:event_nextGameButtonActionPerformed
 
+    private void jLabel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           
+            
+        }
+        
+    }//GEN-LAST:event_jLabel1KeyPressed
+
+    private void jLabel2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel2KeyPressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jLabel2KeyPressed
+
+    private void jLabel10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel10KeyPressed
+       
+        // TODO add your handling code here:
+      
+       
+       /*switch(e.getKeyChar()){
+            case 'a':label.setLocation(label.getX()-1,label.getY());
+                break;
+            case 'w':label.setLocation(label.getX(),label.getY()-1);
+                break;
+            case 's':label.setLocation(label.getX(),label.getY()+1);
+                break;
+            case 'd':label.setLocation(label.getX()+1,label.getY());
+                break;*/
+       
+       
+          
+    }//GEN-LAST:event_jLabel10KeyPressed
+
+    private void FondoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FondoKeyPressed
+        // TODO add your handling code here:
+        
+        x=jLabel10.getX();
+        y=jLabel10.getY();
+        System.out.println(jLabel10.getLocation());
+        switch(evt.getExtendedKeyCode()){
+            case KeyEvent.VK_UP :jLabel10.setLocation(x,y-2);
+                break;
+            case KeyEvent.VK_DOWN :jLabel10.setLocation(x,y+2);
+                break;
+            case KeyEvent.VK_LEFT :jLabel10.setLocation(x-2,y);
+                break;
+            case KeyEvent.VK_RIGHT :jLabel10.setLocation(x+2,y);
+        }
+        
+        
+    }//GEN-LAST:event_FondoKeyPressed
+
     
     /**
      * @param args the command line arguments
@@ -390,6 +471,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel Rondas;
     private javax.swing.JButton botonStartGame;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -406,4 +488,56 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel labelWinsPlayer2;
     private javax.swing.JButton nextGameButton;
     // End of variables declaration//GEN-END:variables
+
+
+    /*@Override
+    public void keyTyped(KeyEvent e) {
+        switch(e.getKeyChar()){
+            case 'a':jLabel10.setLocation(jLabel10.getX()-1,jLabel10.getY());
+                break;
+            case 'w':jLabel10.setLocation(jLabel10.getX(),jLabel10.getY()-1);
+                break;
+            case 's':jLabel10.setLocation(jLabel10.getX(),jLabel10.getY()+1);
+                break;
+            case 'd':jLabel10.setLocation(jLabel10.getX()+1,jLabel10.getY());
+                break;
+        }
+    }
+
+    public void keyPressed(KeyEvent e) {
+        switch(e.getKeyChar()){
+            case 'a':jLabel10.setLocation(jLabel10.getX()-1,jLabel10.getY());
+                break;
+            case 'w':jLabel10.setLocation(jLabel10.getX(),jLabel10.getY()-1);
+                break;
+            case 's':jLabel10.setLocation(jLabel10.getX(),jLabel10.getY()+1);
+                break;
+            case 'd':jLabel10.setLocation(jLabel10.getX()+1,jLabel10.getY());
+                break;
+        }
+    }
+    
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println("You relased key char:"+e.getKeyChar());
+    }*/
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+ 
+    
 }
