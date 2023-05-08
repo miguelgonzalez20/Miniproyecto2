@@ -63,7 +63,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
     public VentanaJuego() {
         
         initComponents();
-        jLabel10.setFocusable(true);
+       // jLabel10.setFocusable(true);
     }
 
     public void presionar(int posicion){
@@ -411,10 +411,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
 
     private void jLabel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel1KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-           
-            
-        }
+      
         
     }//GEN-LAST:event_jLabel1KeyPressed
 
@@ -445,7 +442,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
     private void FondoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FondoKeyPressed
         // TODO add your handling code here:
         
-        x=jLabel10.getX();
+       /* x=jLabel10.getX();
         y=jLabel10.getY();
         System.out.println(jLabel10.getLocation());
         switch(evt.getExtendedKeyCode()){
@@ -455,8 +452,8 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
                 break;
             case KeyEvent.VK_LEFT :jLabel10.setLocation(x-2,y);
                 break;
-            case KeyEvent.VK_RIGHT :jLabel10.setLocation(x+2,y);
-        }
+            case KeyEvent.VK_RIGHT :jLabel10.setLocation(x+2,y);*/
+        
         
         
     }//GEN-LAST:event_FondoKeyPressed
