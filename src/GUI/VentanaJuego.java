@@ -10,10 +10,11 @@ import java.util.Random;
 public class VentanaJuego extends javax.swing.JFrame {
     // ATRIBUTOS
     boolean maquina = false;
+    boolean AuxMaquina = false;
     
     boolean estado = true; 
     String nextGame = "O";
-    int contadorPartidas = 0;
+    int contadorPartidas = 1;
     
     int victoriasJugador1 = 0;
     int victoriasJugador2 = 0;
@@ -55,36 +56,34 @@ public class VentanaJuego extends javax.swing.JFrame {
     public VentanaJuego() {
         initComponents();
     }
-
+   
+    
     public void presionar(int posicion){
         
-
         int contador = 0;
-       
-         
+        System.out.println("RONDA = "+ (contadorPartidas+1));
+        
+        
         if (lbs[ posicion - 1 ].getText().equals("") && estado == true){
             lbs[ posicion - 1 ].setText(turno);
             comprobarGanador();
+            
             cambiarTurno();
-            if(maquina == true){
-                Random rand = new Random();
+            if(maquina == true){             
                 
                 while(contador == 0){
+                    Random rand = new Random();
                     int numeroAleatorio = rand.nextInt(9);
+                    System.out.println("GENERE EL NUMERO RANDOM = " + numeroAleatorio);
                     if (lbs[ numeroAleatorio ].getText().equals("") && estado == true){
                         lbs[numeroAleatorio].setText(turno);
                         comprobarGanador();
                         cambiarTurno();
-                        contador = 1;
+                        contador = 1;  
                     }
-                    
-                
-                }
-                    
-            }
-               
+                }    
+            }    
         }
-        
     }
     public void cambiarTurno(){
         if (turno == "X"){
@@ -109,7 +108,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                 lbs[combinacionesGanador[i][0] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][1] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][2] - 1 ].setForeground(Color.green);
-                
+                maquina = false;
                 estado = false;
             }
             if( lbs[combinacionesGanador[i][0] - 1 ].getText().equals("O") && 
@@ -121,7 +120,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                 lbs[combinacionesGanador[i][0] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][1] - 1 ].setForeground(Color.green);
                 lbs[combinacionesGanador[i][2] - 1 ].setForeground(Color.green);
-                
+                maquina = false;
                 estado = false;
             }
             
@@ -299,10 +298,12 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void botonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonStartGameActionPerformed
         if(jugador.machine == true){
             maquina = true;
+            AuxMaquina = true;
         }
+        
         labelPlayerName.setText(jugador.nombre1);
         labelCPU.setText(jugador.nombre2);
-        Rondas.setText("RONDA # " + Integer.toString(contadorPartidas+1));
+        Rondas.setText("RONDA # " + Integer.toString(contadorPartidas));
     }//GEN-LAST:event_botonStartGameActionPerformed
 
     private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
@@ -343,9 +344,13 @@ public class VentanaJuego extends javax.swing.JFrame {
 
    
     private void nextGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGameButtonActionPerformed
-        if(victoriasJugador1 == 0 && victoriasJugador2 == 0){
+        /*if(victoriasJugador1 == 0 && victoriasJugador2 == 0){
             contadorPartidas--;
-        } // CONDICIONAL PARA CUANDO NADIE GANA CUANDO ES SOLO UNA PARTIDA
+        }*/ // CONDICIONAL PARA CUANDO NADIE GANA CUANDO ES SOLO UNA PARTIDA
+        contadorPartidas++;
+        
+        
+        
         estado = true;  
         turno = nextGame;
         if (nextGame.equals("O")){
@@ -354,8 +359,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         else{
             nextGame = "O";
         }
-        contadorPartidas++;
-        Rondas.setText("RONDA # " + Integer.toString(contadorPartidas+1));
+        
+        Rondas.setText("RONDA # " + Integer.toString(contadorPartidas));
   
         System.out.println("VICTORIAS JUGADOR 1 = "+jugador.WinsPlayer1);
         System.out.println("VICTORIAS JUGADOR 2 = "+jugador.WinsPlayer2);
@@ -365,7 +370,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         System.out.println("VICTORIAS JUGADOR 2 = "+jugador.WinsPlayer2);
         labelWinsPlayer.setText(Integer.toString(jugador.WinsPlayer1));
         labelWinsPlayer2.setText(Integer.toString(jugador.WinsPlayer2));
-        if (contadorPartidas < jugador.numeroPartidas){
+        
+        if (contadorPartidas < jugador.numeroPartidas+1){
             for( int i = 0; i < lbs.length; i ++){
                 lbs[i].setText("");
                 lbs[i].setForeground(Color.black);
@@ -377,6 +383,19 @@ public class VentanaJuego extends javax.swing.JFrame {
             ventanaEstadisticas.setLocationRelativeTo(null);
             this.setVisible(false);
         }
+        
+        if (AuxMaquina == true){ // AUX QUE VERIFICA SI ESTOY JUGANDO EN SINGLE PLAYER
+            System.out.println("ENTRE POR QUE LA RONDA ES PAR");
+            if(contadorPartidas% 2 == 0){
+                Random rand = new Random();
+                int numeroAleatorio = rand.nextInt(9);
+                System.out.println("genere el numero rand = "+ numeroAleatorio);
+                lbs[numeroAleatorio].setText(turno);
+                cambiarTurno();
+                maquina = true;
+            }
+        }
+        maquina = true;
             
     }//GEN-LAST:event_nextGameButtonActionPerformed
 
