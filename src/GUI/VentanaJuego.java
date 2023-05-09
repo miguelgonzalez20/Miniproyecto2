@@ -3,13 +3,16 @@ package GUI;
 
 import Jugador.Jugador;
 import java.awt.Color;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 import javax.swing.JLabel;
 import java.util.Random;
+import javax.swing.BorderFactory;
 
 
-public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
+public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatcher{
     // ATRIBUTOS
     int x,y;
   
@@ -47,7 +50,11 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
     public VentanaJuego(Jugador jugador) {
         this.jugador = jugador;
         
+        
         initComponents();
+        
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
+       this.requestFocus();
         
         lbs[0] = jLabel1;
         lbs[1] = jLabel2;
@@ -58,13 +65,15 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
         lbs[6] = jLabel7;
         lbs[7] = jLabel8;
         lbs[8] = jLabel9;
+        
        
     }
     
     public VentanaJuego() {
         
         initComponents();
-       // jLabel10.setFocusable(true);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
+       this.requestFocus();
     }
    
     
@@ -156,7 +165,6 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         labelTablero = new javax.swing.JLabel();
         labelCPU = new javax.swing.JLabel();
         labelPlayerName = new javax.swing.JLabel();
@@ -256,6 +264,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 0), 6));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel7MousePressed(evt);
@@ -280,17 +289,6 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
             }
         });
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 60, 50));
-
-        jLabel10.setBackground(new java.awt.Color(255, 51, 51));
-        jLabel10.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel10.setText("jLabel10");
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 204)));
-        jLabel10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jLabel10KeyPressed(evt);
-            }
-        });
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 80, 60));
 
         labelTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoJuego.png"))); // NOI18N
         jPanel1.add(labelTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 280, 200));
@@ -439,25 +437,6 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
        
     }//GEN-LAST:event_jLabel2KeyPressed
 
-    private void jLabel10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel10KeyPressed
-       
-        // TODO add your handling code here:
-      
-       
-       /*switch(e.getKeyChar()){
-            case 'a':label.setLocation(label.getX()-1,label.getY());
-                break;
-            case 'w':label.setLocation(label.getX(),label.getY()-1);
-                break;
-            case 's':label.setLocation(label.getX(),label.getY()+1);
-                break;
-            case 'd':label.setLocation(label.getX()+1,label.getY());
-                break;*/
-       
-       
-          
-    }//GEN-LAST:event_jLabel10KeyPressed
-
     private void FondoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FondoKeyPressed
         // TODO add your handling code here:
         
@@ -487,7 +466,6 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
     private javax.swing.JLabel Rondas;
     private javax.swing.JButton botonStartGame;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -539,19 +517,35 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyListener{
         System.out.println("You relased key char:"+e.getKeyChar());
     }*/
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ 
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean dispatchKeyEvent(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            System.out.println("Heññp!");
+            jLabel5.setBorder(BorderFactory.createLineBorder(Color.black));
+            e.consume();
+        }
+         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+            System.out.println("Arriba!");
+            e.consume();
+        }
+          if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+            System.out.println("Abajo!");
+            e.consume();
+        }
+           if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+            System.out.println("Izquierda!");
+            e.consume();
+        }
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+            System.out.println("Derecha!");
+            e.consume();
+        }
+            
+        return false;
+    
+        
     }
 
  
