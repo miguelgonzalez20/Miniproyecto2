@@ -13,12 +13,8 @@ import javax.swing.BorderFactory;
 
 
 public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatcher{
-    // ATRIBUTOS
-    int x,y;
-  
+    
     public int posicion;
-   
-   
         
     boolean maquina = false;
     boolean AuxMaquina = false;
@@ -26,6 +22,8 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
     boolean estado = true; 
     String nextGame = "O";
     int contadorPartidas = 1;
+    
+    private int currentSelection = -1;
     
     int victoriasJugador1 = 0;
     int victoriasJugador2 = 0;
@@ -165,10 +163,10 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         labelTablero = new javax.swing.JLabel();
         labelCPU = new javax.swing.JLabel();
         labelPlayerName = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -264,13 +262,13 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 0), 6));
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 102, 0), 0));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel7MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 60, 50));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 60, 50));
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -288,19 +286,17 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel9MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 60, 50));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 60, 50));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 70, 60));
 
         labelTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoJuego.png"))); // NOI18N
-        jPanel1.add(labelTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 280, 200));
+        jPanel1.add(labelTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 280, 200));
 
         labelCPU.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jPanel1.add(labelCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
         labelPlayerName.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jPanel1.add(labelPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
-
-        jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 70, 60));
 
         Fondo.setBackground(new java.awt.Color(255, 0, 0));
         Fondo.setForeground(new java.awt.Color(255, 51, 0));
@@ -310,7 +306,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 FondoKeyPressed(evt);
             }
         });
-        jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 370));
+        jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 520, 370));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -517,30 +513,58 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
         System.out.println("You relased key char:"+e.getKeyChar());
     }*/
 
+    
+    private void nextIndex( int delta, int limit, int inIndex, int outIndex ) {
+    final int difference = ((currentSelection + delta) < limit)? inIndex: outIndex; 
+            currentSelection += difference;
+    }
  
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println("Heññp!");
-            jLabel5.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+        final int key = e.getKeyCode();
+        final boolean isPressed = (e.getID() == KeyEvent.KEY_PRESSED);
+        
+        final boolean isMovementKey = (key == KeyEvent.VK_W) || (key == KeyEvent.VK_S) || (key == KeyEvent.VK_A) || (key == KeyEvent.VK_D) || (key == KeyEvent.VK_UP) || (key == KeyEvent.VK_DOWN) || (key == KeyEvent.VK_LEFT) || (key == KeyEvent.VK_RIGHT);
+        System.out.printf("currentSelection; %d", currentSelection);
+        if( isMovementKey && (currentSelection == -1) ) {
+            jLabel1.setBorder(BorderFactory.createLineBorder(Color.black));
+            currentSelection = 0;
             e.consume();
         }
-         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+        
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            presionar(currentSelection + 1);
+            e.consume();
+        }
+         if ( isPressed && key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
+            lbs[currentSelection].setBorder(BorderFactory.createEmptyBorder());
+            nextIndex( -3, 0, 6, -3);
+            lbs[currentSelection].setBorder(BorderFactory.createLineBorder(Color.black));
             System.out.println("Arriba!");
             e.consume();
         }
-          if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-            System.out.println("Abajo!");
+          if ( isPressed && e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+            lbs[currentSelection].setBorder(BorderFactory.createEmptyBorder());
+            nextIndex( 3, 9, 3, -6);
+            lbs[currentSelection].setBorder(BorderFactory.createLineBorder(Color.black));
+       
             e.consume();
         }
-           if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
-            System.out.println("Izquierda!");
+           if ( isPressed && e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+            lbs[currentSelection].setBorder(BorderFactory.createEmptyBorder());
+            nextIndex( -1, 0, 8, -1);
+            lbs[currentSelection].setBorder(BorderFactory.createLineBorder(Color.black));
+       
             e.consume();
         }
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
-            System.out.println("Derecha!");
+            if (isPressed && e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+            lbs[currentSelection].setBorder(BorderFactory.createEmptyBorder());
+            nextIndex( 1, 9, 1, -8);
+            lbs[currentSelection].setBorder(BorderFactory.createLineBorder(Color.black));
             e.consume();
+            
         }
             
         return false;
