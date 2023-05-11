@@ -157,13 +157,13 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
         Rondas = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         labelTablero = new javax.swing.JLabel();
         labelCPU = new javax.swing.JLabel();
         labelPlayerName = new javax.swing.JLabel();
@@ -217,7 +217,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel1KeyPressed(evt);
             }
         });
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 60, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 60, 50));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -231,7 +231,16 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel2KeyPressed(evt);
             }
         });
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 60, 50));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 60, 50));
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel3MousePressed(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 50, 50));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -240,7 +249,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel4MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 60, 50));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 60, 50));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -249,7 +258,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel5MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 60, 50));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 60, 60));
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -258,7 +267,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel6MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 60, 50));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 50, 60));
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -277,7 +286,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel8MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 60, 50));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 50, 50));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -286,8 +295,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 jLabel9MousePressed(evt);
             }
         });
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 60, 50));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 70, 60));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 50, 50));
 
         labelTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoJuego.png"))); // NOI18N
         jPanel1.add(labelTablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 280, 200));
@@ -451,6 +459,10 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
         
         
     }//GEN-LAST:event_FondoKeyPressed
+
+    private void jLabel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MousePressed
+        presionar(3);
+    }//GEN-LAST:event_jLabel3MousePressed
 
     
     /**
