@@ -18,11 +18,10 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
         
     boolean maquina = false;
     boolean AuxMaquina = false;
-    
     boolean estado = true; 
+    
     String nextGame = "O";
     int contadorPartidas = 1;
-    
     private int currentSelection = -1;
     
     int victoriasJugador1 = 0;
@@ -110,9 +109,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
             turno = "X";
         }
     }
-    public void revisarTablero(){
-        
-    }
+    
     public void comprobarGanador(){
         
         for ( int i = 0; i < combinacionesGanador.length; i++){
@@ -384,13 +381,9 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
 
    
     private void nextGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextGameButtonActionPerformed
-        /*if(victoriasJugador1 == 0 && victoriasJugador2 == 0){
-            contadorPartidas--;
-        }*/ // CONDICIONAL PARA CUANDO NADIE GANA CUANDO ES SOLO UNA PARTIDA
+       
         contadorPartidas++;
-        
-        
-        
+
         estado = true;  
         turno = nextGame;
         if (nextGame.equals("O")){
@@ -435,7 +428,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
                 maquina = true;
             }
         }
-        maquina = true;
+        
             
     }//GEN-LAST:event_nextGameButtonActionPerformed
 

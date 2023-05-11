@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import Jugador.Jugador;
@@ -13,9 +8,6 @@ import Jugador.Jugador;
  */
 public class VentanaEstadisticas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaEstadisticas
-     */
     Jugador jugador;
     
     public VentanaEstadisticas(Jugador jugador) {

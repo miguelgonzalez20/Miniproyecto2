@@ -1,16 +1,15 @@
+/*
+MiniProyecto 2
 
+INTEGRANTES DEL GRUPO : 
+- Miguel Angel Gonzalez Castrillon 2227203
+- Ana Sofía Mezu Vargas 2225958         
+CURSO FPOE GRUPO 01
+PROFESOR : LUIS YOVANY ROMO PORTILLA
+
+*/
 import GUI.VentanaPrincipal;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Miguel
- */
 public class main {
     public static String nombre_1;
     /**
