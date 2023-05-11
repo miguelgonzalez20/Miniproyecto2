@@ -151,6 +151,7 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
 
         jPanel1 = new javax.swing.JPanel();
         botonStartGame = new javax.swing.JButton();
+        ExitButton = new javax.swing.JButton();
         nextGameButton = new javax.swing.JButton();
         labelWinsPlayer = new javax.swing.JLabel();
         labelWinsPlayer2 = new javax.swing.JLabel();
@@ -180,6 +181,14 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
             }
         });
         jPanel1.add(botonStartGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 160, -1));
+
+        ExitButton.setText("EXIT");
+        ExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ExitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
 
         nextGameButton.setText("NEXT GAME");
         nextGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -464,12 +473,20 @@ public class VentanaJuego extends javax.swing.JFrame implements KeyEventDispatch
         presionar(3);
     }//GEN-LAST:event_jLabel3MousePressed
 
+    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
+        VentanaEstadisticas ventanaEstadisticas = new VentanaEstadisticas();
+        ventanaEstadisticas.setVisible(true);
+        ventanaEstadisticas.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_ExitButtonActionPerformed
+
     
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ExitButton;
     private javax.swing.JLabel Fondo;
     private javax.swing.JLabel Rondas;
     private javax.swing.JButton botonStartGame;
